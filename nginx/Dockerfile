@@ -4,4 +4,5 @@ RUN apk add --update nginx && rm -rf /var/cache/apk/*
 ADD nginx.conf /etc/nginx/nginx.conf
 RUN mkdir /website
 EXPOSE 80
+EXPOSE 81
 CMD ["nginx"]

@@ -1,5 +1,7 @@
 # do not check in bundled js+css
 dist/*
+dev-dist/*
+!dev-dist/index.html
 !dist/index.html
 
 # do not check in node packages
@@ -7,6 +9,8 @@ node_modules
 
 # for local development
 log
+todo.md
 
 # strays
 .DS_Store
+

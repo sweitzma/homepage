@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "autoprefixer": "^9",
+    "concurrently": "^6.2.1",
     "esbuild": "^0.12.25",
+    "lorem-ipsum": "^2.0.3",
     "postcss": "^7",
     "postcss-cli": "^7",
     "postcss-loader": "^3.0.0",
@@ -14,13 +16,14 @@
     "react-router-dom": "^5.1.2",
     "source-map-loader": "^0.2.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "concurrently": "^6.2.1",
-    "lorem-ipsum": "^2.0.3",
     "underscore": "^1.10.2"
   },
   "scripts": {
-    "watch-js": "esbuild src/index.jsx --loader:.png=file --loader:.jpg=file --sourcemap --bundle --outfile=dist/bundle.js --watch --public-path=/",
-    "watch-css": "postcss src/*.css -o dist/style.css -w",
-    "dev": "concurrently \"yarn run watch-js\" \"yarn run watch-css\""
+    "build-js": "NODE_ENV=production node ./scripts/build-prod.js",
+    "watch-js": "node ./scripts/watch-dev.js",
+    "build-css": "NODE_ENV=production postcss src/*.css -o dist/style.css",
+    "watch-css": "postcss src/*.css -o dev-dist/style.css -w",
+    "dev": "concurrently \"yarn run watch-js\" \"yarn run watch-css\"",
+    "prod": "concurrently \"yarn run build-js\" \"yarn run build-css\""
   }
 }

@@ -2,7 +2,9 @@ nginx:
   build: nginx/
   ports:
     - "8080:80"
+    - "8081:81"
   volumes:
-    - ./dist:/homepage
+    - ./dev-dist:/homepage-dev
+    - ./dist:/homepage-prod
     - ./log/nginx:/var/log/nginx
   restart: always
