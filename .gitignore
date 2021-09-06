@@ -7,3 +7,6 @@ node_modules
 
 # for local development
 log
+
+# strays
+.DS_Store
