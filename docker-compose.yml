@@ -1,0 +1,8 @@
+nginx:
+  build: nginx/
+  ports:
+    - "8080:80"
+  volumes:
+    - ./dist:/homepage
+    - ./log/nginx:/var/log/nginx
+  restart: always

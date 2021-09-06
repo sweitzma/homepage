@@ -1,0 +1,9 @@
+# do not check in bundled js+css
+dist/*
+!dist/index.html
+
+# do not check in node packages
+node_modules
+
+# for local development
+log
