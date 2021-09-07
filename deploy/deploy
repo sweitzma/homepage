@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Uploading content to S3"
+
+BUCKET=s3://almostsam.com
+FILES=("bundle.js" "index.html" "style.css")
+dist_dir="$(realpath "$( dirname "${BASH_SOURCE[0]}" )"/../dist)"
+
+cd "$( dirname "${BASH_SOURCE[0]}" )" || exit
+
+for f in "${FILES[@]}" 
+do
+  docker run --rm --env-file .env -it -v "${dist_dir}":/dist \
+    amazon/aws-cli s3 cp "/dist/${f}" "${BUCKET}"
+done

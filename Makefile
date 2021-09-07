@@ -29,3 +29,8 @@ start: ## start up nginx container
 
 stop: ## bring down nginx container
 	docker-compose down
+
+### deployment
+.PHONY: deploy
+deploy: clean compile ## compile and copy results to S3
+	@./deploy/deploy
