@@ -10,7 +10,7 @@ const About = () => {
         { spacer }
         Welcome to my home page! I am based out of the lovely Richmond district of San Francisco.
 
-        Professionally, I am a <code>machine learning engineer</code> at <a className="hover:underline italic bg-grey-100" href="http://meraki.cisco.com">Cisco Meraki</a>.
+        Professionally, I am a <code>machine learning engineer</code> at <a className="hover:underline italic" href="http://meraki.cisco.com">Cisco Meraki</a>.
 
         Unprofessionally, I try my hand at all sorts of things that catch my interest.
 
@@ -20,7 +20,7 @@ const About = () => {
 
         { spacer }
 
-          I am also very interested in sustainable agriculture, food systems, and earth systems. Presently diving deeper into groundwater monitoring and storage as it pertains to climate change. Previously, I have been a part of the Clement St. Sunday farmers market helping to run the Bounty Box CSA program.
+        I am also very interested in sustainable agriculture, food systems, and earth systems. Presently diving deeper into groundwater monitoring and storage as it pertains to climate change. Previously, I have been a part of the Clement St. Sunday farmers market helping to run the <a className="hover:underline italic" href="https://bounty-box.org/">Bounty Box CSA program</a>.
       </div>
     </div>
   );
