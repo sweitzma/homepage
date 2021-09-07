@@ -14,8 +14,10 @@ compile: ## build js/css/html to serve in prod
 	@gzip -9kf dist/bundle.js
 	@gzip -9kf dist/style.css
 
-clean: ## remove all non-source-code compiled files
+clean-dev: ## remove all non-source-code compiled files in dev-dist/
 	@find dev-dist ! -name index.html -type f -delete
+
+clean-prod: ## remove all non-source-code compiled files in dist/
 	@find dist ! -name index.html -type f -delete
 
 ### NGINX Webserver
@@ -32,5 +34,5 @@ stop: ## bring down nginx container
 
 ### deployment
 .PHONY: deploy
-deploy: clean compile ## compile and copy results to S3
+deploy: clean-prod compile ## compile and copy results to S3
 	@./deploy/deploy

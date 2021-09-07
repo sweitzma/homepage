@@ -2,11 +2,15 @@ import React from "react";
 import { 
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from "react-router-dom";
 import './style.css';
 
-import RoutedTabs from './Tabs';
+import RoutedTabs from "./Tabs";
+import About from "./About"
+import CV from "./CV";
+import Footer from './Footer';
 import { LoremIpsum } from "lorem-ipsum";
 
 
@@ -14,48 +18,38 @@ const App = () => {
   const lorem = new LoremIpsum();
   return(
     <Router>
-      <div className="flex justify-center w-4/12 mx-auto">
-        <p className="text-4xl font-serif">
-          Sam Weitzman
-        </p>
+      <div className="flex flex-col justify-between w-8/12 xl:w-6/12 h-screen mx-auto">
+        {/* header */}
+        <div className="flex justify-center w-4/12 mx-auto my-4">
+          <p className="text-4xl font-serif">
+            Sam Weitzman
+          </p>
+        </div>
+        {/* END header */}
+
+        {/* content */}
+        <div className="mb-auto">
+          <RoutedTabs
+            tabs={ [
+              {name: 'About', route: 'about'},
+              {name: 'CV', route: 'cv'},
+            ] }
+          />
+
+          <Switch>
+            <Route exact path="/"> <Redirect to="/about" /> </Route>
+            <Route path="/about"> <About /> </Route>
+            <Route path="/cv"> <CV /> </Route>
+          </Switch>
+        </div>
+        {/* END content */}
+
+        {/* footer */}
+        <div className="justify-bottom">
+          <Footer />
+        </div>
+        {/* END footer */}
       </div>
-
-      <RoutedTabs
-        tabs={ [
-          {name: 'About', route: 'about'},
-          {name: 'CV', route: 'cv'},
-        ] }
-      />
-
-      <Switch>
-        <Route path="/about">
-          <div className="w-8/12 mx-auto p-4">
-          { lorem.generateParagraphs(8) }
-          </div>
-
-          <div className="text-center w-6/12 mx-auto p-4 text-4xl font-sarif">
-            "A quote is nothing without context."
-          </div>
-
-          <div className="w-8/12 mx-auto p-4">
-          { lorem.generateParagraphs(2) }
-          </div>
-        </Route>
-        <Route path="/cv">
-          <div className="w-8/12 mx-auto p-4">
-          { lorem.generateParagraphs(1) }
-          </div>
-
-          <div className="text-center w-6/12 mx-auto p-4 text-4xl font-sarif">
-            "A new day a new quote."
-          </div>
-
-          <div className="w-8/12 mx-auto p-4">
-          { lorem.generateParagraphs(2) }
-          </div>
-        </Route>
-      </Switch>
-
     </Router>
   );
 }
