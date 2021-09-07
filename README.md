@@ -1,4 +1,7 @@
 # Personal Homepage
+---
+Visit the website at http://almostsam.com
+---
 
 ## Running locally
 We need a few things to get started running locally:
