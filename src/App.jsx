@@ -20,9 +20,9 @@ const App = () => {
     <Router>
       <div className="flex flex-col justify-between w-8/12 xl:w-6/12 h-screen mx-auto">
         {/* header */}
-        <div className="flex justify-center w-4/12 mx-auto my-4">
+        <div className="flex text-center mx-auto my-4">
           <p className="text-4xl font-serif">
-            Sam Weitzman
+            Samuel Weitzman
           </p>
         </div>
         {/* END header */}
