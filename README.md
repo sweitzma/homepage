@@ -11,32 +11,39 @@ $ yarn install
 ```
 to install all of the javascript dependencies.
 
-Now we can actually build the javascript bundle located in `dist/bundle.js` that
-the `dist/index.html` file assumes exists. It is not checked in because it is
-just javascript compiled by esbuild. To create it we can run
-```
-$ make watch
-```
+### Compiling for development
+The development version is compiled fast, not small. And NGINX serves the
+development bundle at http://localhost:8080. While you work run `make watch`
+which will make sure that the contents of `dev-dist` reflect the most 
+recent code changes.
 
-Now that all of our files are ready to serve, we need a web server running to actually serve them. This project uses Nginx running in a Docker container. We can build the image with
-```
-$ make build
-```
-and start the container running the web server by running
-```
-$ make start
-```
-Starting should (assuming MacOs + Firefox) pop open a Firefox web browser with the page on `localhost:8080`.
+### Compiling for production
+The production version is compiled small, not fast. And NGINX serves the
+production bundle at http://localhost:8081. The main differences between the dev
+and prod versions are that Javascript is minified and CSS is purged. See
+([here](https://tailwindcss.com/docs/optimizing-for-production)).
 
-We can stop the nginx container at any time with
-```
-$ make stop
-```
+Run `make compile` to write the production bundles to `dist`.
 
-## Developing locally
-One thing the running locally section does not address is how to easily make
-code changes to the React code and see them on the web browser. We can use
-esbuild to watch files as we change them and rebuild the `bundle.js` file by running
+### Serving HTML/JS/CSS
+We use Docker to actually serve the content to the browser locally. Here area a
+few commands you'll need to know:
 ```
-$ make watch
+$ make build  # build serving image
+$ make start  # start the serving container
+$ make stop   # stop the serving container
 ```
+You can see the devolopment bundle at http://localhost:8080 and the production
+bundle at http://localhost:8081.
+
+## Deployment
+Right now you can visit the website at http://almostsam.com. It is hosted as a
+static site in AWS S3. Deployment really just means copying the correct files
+from locally to S3 at the moment.
+
+To actually deploy, make sure you have `deploy/env_template` filled out as
+`deploy/.env` and then run 
+```
+$ make deploy
+```
+which `compile` and then send the results to S3 for serving.
